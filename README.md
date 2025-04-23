@@ -4,5 +4,4 @@ A project from The Odin Project to practice making asynchronous code
 
 ## To Do
 
-- Brainstorm features and layouts
-- Gather assets
+- Learn Visual Crossing API
