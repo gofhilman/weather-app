@@ -67,10 +67,10 @@ class Location {
             this.time = addMinutes(this.time, 1);
         }, ONE_MINUTE);
     }
-    getCurrentConditions() {
+    getCurrentWeather() {
         return this.data.currentConditions;
     }
-    getWeekConditions() {
+    getWeeklyWeather() {
         return this.data.days;
     }
 }
