@@ -1,4 +1,5 @@
 import { page } from "./main-objs";
+import { format } from "date-fns";
 
 const locationName = document.querySelector("#location-name");
 const locationTime = document.querySelector("#location-time");
@@ -29,4 +30,37 @@ function updateContent() {
     headAddress.textContent = separatedAddress[0];
     subheadAddress.textContent = separatedAddress[1];
     locationName.replaceChildren(headAddress, subheadAddress);
+
+    // Update location time
+    const placeTime = document.createElement("p");
+    const placeDate = document.createElement("p");
+    placeTime.classList.add("place-time");
+    placeDate.classList.add("place-date");
+    placeTime.textContent = format(page.current.time, "p");
+    placeDate.textContent = format(page.current.time, "iiii, MMMM d");
+    locationTime.replaceChildren(placeTime, placeDate);
+
+    // Update weekly weather
+    weeklyWeather.replaceChildren();
+    const weeklyWeatherData = page.current.getWeeklyWeather();
+    for(let day = 0; day < weeklyWeatherData.length; day++) {
+        const dailyWeather = document.createElement("div");
+        const dayName = document.createElement("p");
+        const dayIcon = document.createElement("img");
+        const maxTemperature = document.createElement("p");
+        const minTemperature = document.createElement("p");
+        dayName.classList.add("day-name");
+        dayIcon.classList.add("day-icon");
+        maxTemperature.classList.add("temperature-range");
+        minTemperature.classList.add("temperature-range");
+        dayName.textContent = format(weeklyWeatherData[day].datetime, "iii, MMM d");
+        import(`./assets/weather-icon/${weeklyWeatherData[day].icon}.svg`)
+            .then(source => dayIcon.src = source);
+        maxTemperature.textContent = `${Math.round(weeklyWeatherData[day].tempmax)}\u00B0`;
+        minTemperature.textContent = `${Math.round(weeklyWeatherData[day].tempmin)}\u00B0`;
+        dailyWeather.append(dayName, dayIcon, maxTemperature, minTemperature);
+        weeklyWeather.appendChild(dailyWeather);
+    }
 }
+
+export default updateContent;
