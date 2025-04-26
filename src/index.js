@@ -1,4 +1,5 @@
 import { Location, page } from "./main-objs";
+import "./styles.css";
 
 new Location("Barcelona").fetchData();
 
