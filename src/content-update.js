@@ -61,6 +61,33 @@ function updateContent() {
         dailyWeather.append(dayName, dayIcon, maxTemperature, minTemperature);
         weeklyWeather.appendChild(dailyWeather);
     }
+
+    // Update the rest
+    const currentWeatherData = page.current.getCurrentWeather();
+    let temperatureUnit, speedUnit, precipitationUnit;
+    if(page.unit === "metric") {
+        temperatureUnit = "C";
+        speedUnit = "km/h";
+        precipitationUnit = "mm";
+
+    } else {
+        temperatureUnit = "F";
+        speedUnit = "mph";
+        precipitationUnit = "in";
+    }
+    temperature.textContent = `${Math.round(currentWeatherData.temp)} \u00B0${temperatureUnit}`;
+    weatherDescription.textContent = currentWeatherData.conditions;
+    feelsLike.textContent = `Feels like ${Math.round(currentWeatherData.feelslike)} \u00B0${temperatureUnit}`;
+    uvIndex.textContent = `UV Index: ${currentWeatherData.uvindex}`;
+    const sunriseTime = document.createElement("p");
+    const sunsetTime = document.createElement("p");
+    sunriseTime.textContent = `Sunrise: ${format(currentWeatherData.sunrise, "p")}`;
+    sunsetTime.textContent = `Sunset: ${format(currentWeatherData.sunset, "p")}`;
+    sunTime.replaceChildren(sunriseTime, sunsetTime);
+    humidity.textContent = `Humidity: ${currentWeatherData.humidity}`;
+    wind.textContent = `Wind Velocity: ${currentWeatherData.windspeed} ${speedUnit}` +
+        `to ${currentWeatherData.winddir}\u00B0`;
+    precipitation.textContent = `Precipitation: ${currentWeatherData.precip} ${precipitationUnit}`;
 }
 
 export default updateContent;
