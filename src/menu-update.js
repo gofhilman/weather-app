@@ -1,10 +1,10 @@
 import { page } from "./main-objs";
-import { format } from "date-fns";
 import trashIcon from "./assets/trash-can-outline.svg";
 
 const menuContent = document.querySelector("#menu-content");
 
 function updateMenu() {
+    menuContent.replaceChildren();
     for(let pinNumber = 0; pinNumber < page.locations.length; pinNumber++) {
         const place = document.createElement("div");
         const placeName = document.createElement("p");
@@ -32,6 +32,21 @@ function updateMenu() {
         placeName.textContent = mainAddress;
         import(`./assets/weather-icon/${page.locations[pinNumber].getCurrentWeather().icon}.svg`)
             .then(source => weatherIcon.src = source);
-    }
+        weatherDesc.textContent = page.locations[pinNumber].getCurrentWeather().conditions;
+        let temperatureUnit;
+        if(page.unit === "metric") {
+            temperatureUnit = "C";
+        } else {
+            temperatureUnit = "F";
+        }
+        placeTemp.textContent = `${Math.round(page.locations[pinNumber].getCurrentWeather().temp)} ` +
+            `\u00B0${temperatureUnit}`;
+        removalIcon.src = trashIcon;
 
+        placeRemoval.appendChild(removalIcon);
+        place.append(placeName, weatherIcon, weatherDesc, placeTemp, placeRemoval);
+        menuContent.appendChild(place);
+    }
 }
+
+export default updateMenu;
