@@ -33,12 +33,7 @@ function updateMenu() {
         import(`./assets/weather-icon/${page.locations[pinNumber].getCurrentWeather().icon}.svg`)
             .then(source => weatherIcon.src = source);
         weatherDesc.textContent = page.locations[pinNumber].getCurrentWeather().conditions;
-        let temperatureUnit;
-        if(page.unit === "metric") {
-            temperatureUnit = "C";
-        } else {
-            temperatureUnit = "F";
-        }
+        let temperatureUnit = (page.unit === "metric") ? "C" : "F";
         placeTemp.textContent = `${Math.round(page.locations[pinNumber].getCurrentWeather().temp)} ` +
             `\u00B0${temperatureUnit}`;
         removalIcon.src = trashIcon;

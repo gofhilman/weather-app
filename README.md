@@ -6,3 +6,4 @@ A project from The Odin Project to practice making asynchronous code
 
 - Gather assets
 - Add update functions
+- Add handler functions

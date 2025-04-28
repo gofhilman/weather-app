@@ -39,7 +39,7 @@ class Location {
 
     async fetchData() {
         try {
-            const response = await fetch(this.url);
+            const response = await fetch(this.url, {mode: "cors"});
             if(!response.ok) {
                 throw new Error(`Response status: ${response.status}`);
             }
