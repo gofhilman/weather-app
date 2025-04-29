@@ -1,4 +1,4 @@
-import { Page, Location, page } from "./main-objs.js"
+import { Page, Location, page } from "./main-objs"
 
 function init() {
     let savedPage;

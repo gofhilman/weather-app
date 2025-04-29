@@ -78,7 +78,7 @@ function updateContent() {
     sunsetTime.textContent = `Sunset: ${format(`${page.current.data.days[0].datetime}T${currentWeatherData.sunset}`, "p")}`;
     sunTime.replaceChildren(sunriseTime, sunsetTime);
     humidity.textContent = `Humidity: ${currentWeatherData.humidity}`;
-    wind.textContent = `Wind Velocity: ${currentWeatherData.windspeed} ${speedUnit}` +
+    wind.textContent = `Wind Velocity: ${currentWeatherData.windspeed} ${speedUnit} ` +
         `to ${currentWeatherData.winddir}\u00B0`;
     precipitation.textContent = `Precipitation: ${currentWeatherData.precip} ${precipitationUnit}`;
 }
