@@ -14,7 +14,7 @@ class Page {
         }  
     }
     removeLocation(locationObj) {
-        this.locations.splice(this.locations.indexOf(locationObj), 1);
+        return this.locations.splice(this.locations.indexOf(locationObj), 1);
     }
     setCurrentLocation(locationObj) {
         this.current = locationObj;

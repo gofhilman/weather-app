@@ -2,6 +2,8 @@ import { Location, page } from "./main-objs";
 import updateContent from "./content-update";
 import updateMenu from "./menu-update";
 
+// const 
+
 function handleSearch(event) {
     if(event.key === "Enter") {
         const newLocation = new Location(event.target.value);
@@ -31,4 +33,20 @@ function handleMenuContent(event) {
     }
 }
 
-export { handleSearch, handleTempToggle, handleMenuContent }
+function handlePlaceRemoval(event) {
+    if(["place-removal", "removal-icon"].includes(event.target.className)) {
+        const removedLocations = page.removeLocation(page.locations.find(locationObj => {
+            switch(event.target.className) {
+                case "place-removal":
+                    return locationObj.id === event.target
+                        .previousElementSibling.id;
+                case "removal-icon":
+                    return locationObj.id === event.target.parentElement
+                        .previousElementSibling.id;
+            }
+        }));
+        // if(removedLocations[0].id === page.current.id) TBC!!!
+    }
+}
+
+export { handleSearch, handleTempToggle, handleMenuContent, handlePlaceRemoval }

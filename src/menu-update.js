@@ -13,7 +13,7 @@ function updateMenu() {
         const weatherDesc = document.createElement("p");
         const placeTemp = document.createElement("p");
         const placeRemoval = document.createElement("div");
-        const removalIcon = document.createElement("div");
+        const removalIcon = document.createElement("img");
 
         placeContainer.setAttribute("id", page.locations[pinNumber].id);
         placeContainer.classList.add("place-container");
