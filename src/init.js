@@ -1,4 +1,9 @@
-import { Page, Location, page } from "./main-objs"
+import { Page, Location, page } from "./main-objs";
+import updateContent from "./content-update";
+import updateMenu from "./menu-update";
+
+const menuTitle = document.querySelector("#menu-title");
+const menuContent =document.querySelector("#menu-content");
 
 function init() {
     let savedPage;
@@ -14,6 +19,15 @@ function init() {
         });
         Object.setPrototypeOf(page, Page.prototype);
     }
+
+    if(page.locations[0]) {
+        page.locations[0].fetchData()
+            .then(() => updateContent())
+            .then(() => updateMenu());
+    }
+
+    menuTitle.style.display = "none";
+    menuContent.style.display = "none";
 }
 
 export default init;

@@ -2,6 +2,9 @@ import { Location, page } from "./main-objs";
 import updateContent from "./content-update";
 import updateMenu from "./menu-update";
 
+const menuTitle = document.querySelector("#menu-title");
+const menuContent =document.querySelector("#menu-content");
+
 function handleSearch(event) {
     if(event.key === "Enter") {
         const newLocation = new Location(event.target.value);
@@ -47,4 +50,20 @@ function handlePlaceRemoval(event) {
     }
 }
 
-export { handleSearch, handleTempToggle, handleMenuContent, handlePlaceRemoval }
+function handleMenuIcon() {
+    if(menuContent.style.display === "none") {
+        menuTitle.style.display = "block";
+        menuContent.style.display = "flex";
+    } else {
+        menuTitle.style.display = "none";
+        menuContent.style.display = "none";
+    }
+}
+
+export { 
+    handleSearch, 
+    handleTempToggle, 
+    handleMenuContent, 
+    handlePlaceRemoval,
+    handleMenuIcon
+ };
