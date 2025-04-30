@@ -1,4 +1,4 @@
-import { handleMenuContent, handleSearch, handleTempToggle } from "./handlers";
+import { handleMenuContent, handlePlaceRemoval, handleSearch, handleTempToggle } from "./handlers";
 import { page } from "./main-objs";
 import "./styles.css";
 
@@ -17,3 +17,4 @@ let temperatureUnit = (page.unit === "metric") ? "\u00B0C" : "\u00B0F";
 temperatureToggle.textContent = temperatureUnit;
 temperatureToggle.addEventListener("click", event => handleTempToggle(event));
 menuContent.addEventListener("click", event => handleMenuContent(event));
+menuContent.addEventListener("click", event => handlePlaceRemoval(event));

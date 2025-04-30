@@ -26,11 +26,8 @@ class Page {
 
 class Location {
     constructor(name) {
-        this.url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/` +
-            `services/timeline/${name.replace(/ /g, '%20')}/next7days?unitGroup=${page.unit}&` +
-            `elements=datetime,tempmax,tempmin,temp,feelslike,humidity,precip,` +
-            `windspeed,winddir,uvindex,sunrise,sunset,conditions,icon&include=days,` +
-            `current&key=PKZXRF4GNMWKQJKLAJ5S4LCY7`;
+        this.name = name;
+        this.url = "";
         this.data = null;
         this.address = "";
         this.time = null;
@@ -38,6 +35,11 @@ class Location {
     }
 
     async fetchData() {
+        this.url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/` +
+            `services/timeline/${this.name.replace(/ /g, '%20')}/next7days?unitGroup=${page.unit}&` +
+            `elements=datetime,tempmax,tempmin,temp,feelslike,humidity,precip,` +
+            `windspeed,winddir,uvindex,sunrise,sunset,conditions,icon&include=days,` +
+            `current&key=PKZXRF4GNMWKQJKLAJ5S4LCY7`;
         try {
             const response = await fetch(this.url, {mode: "cors"});
             if(!response.ok) {
