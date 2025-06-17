@@ -1,40 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="background"></div>
     <div class="sidebar">
-        <div class="menu-header">
-            <img src="./assets/menu.svg" alt="Menu icon" id="menu-icon">
-            <p id="menu-title">Pinned Locations</p>
-        </div>
-        <div id="menu-content"></div>
+      <div class="menu-header">
+        <img src="./assets/menu.svg" alt="Menu icon" id="menu-icon" />
+        <p id="menu-title">Pinned Locations</p>
+      </div>
+      <div id="menu-content"></div>
     </div>
     <div class="main">
-        <div class="header">
-            <div class="title">
-                <img src="./assets/icons8-weather-128.svg" alt="App logo" class="title-logo">
-                <p class="title-text">WeatherApp</p>
-            </div>
-            <input type="search" id="location-name" placeholder="Search a place">
-            <div id="temperature-toggle"></div>
+      <div class="header">
+        <div class="title">
+          <img
+            src="./assets/icons8-weather-128.svg"
+            alt="App logo"
+            class="title-logo"
+          />
+          <p class="title-text">WeatherApp</p>
         </div>
-        <div class="content">
-            <div id="address-name"></div>
-            <div id="location-time"></div>
-            <div id="weekly-weather"></div>
-            <div id="temperature"></div>
-            <div id="weather-description"></div>
-            <div id="feels-like"></div>
-            <div id="uv-index"></div>
-            <div id="sun-time"></div>
-            <div id="humidity"></div>
-            <div id="wind"></div>
-            <div id="precipitation"></div>
-        </div>
+        <input type="search" id="location-name" placeholder="Search a place" />
+        <div id="temperature-toggle"></div>
+      </div>
+      <div class="content">
+        <div id="address-name"></div>
+        <div id="location-time"></div>
+        <div id="weekly-weather"></div>
+        <div id="temperature"></div>
+        <div id="weather-description"></div>
+        <div id="feels-like"></div>
+        <div id="uv-index"></div>
+        <div id="sun-time"></div>
+        <div id="humidity"></div>
+        <div id="wind"></div>
+        <div id="precipitation"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
