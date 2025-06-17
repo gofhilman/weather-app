@@ -1,7 +1,5 @@
 import { addMinutes } from "date-fns";
 
-const ONE_MINUTE = 60000;
-
 class Page {
   constructor() {
     this.locations = [];
@@ -11,7 +9,7 @@ class Page {
   pinLocation(locationObj) {
     if (
       !this.locations.find(
-        (location) => location.address === locationObj.address,
+        (location) => location.address === locationObj.address
       )
     ) {
       this.locations.push(locationObj);
@@ -52,8 +50,7 @@ class Location {
       }
       this.data = await response.json();
       this.getAddress();
-      this.updateTime();
-      this.progressTime();
+      await this.updateTime();
       page.pinLocation(this);
       page.setCurrentLocation(this);
     } catch (error) {
@@ -63,18 +60,26 @@ class Location {
   getAddress() {
     this.address = this.data.resolvedAddress;
   }
-  updateTime() {
-    this.time = new Date(
-      `${this.data.days[0].datetime}T${this.data.currentConditions.datetime}`,
-    );
+  async updateTime() {
+    let timeData;
+    const timeUrl =
+      "https://api.api-ninjas.com/v1/worldtime?timezone=" + this.data.timezone;
+    try {
+      const response = await fetch(timeUrl, {
+        mode: "cors",
+        headers: { "X-Api-Key": "vbnmoSfEQt2QTmFK9s2mdQ==j1fQdNiY2dFlaakx" },
+      });
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      timeData = await response.json();
+    } catch (error) {
+      console.error(error.message);
+    }
+    this.time = new Date(timeData.datetime.replace(" ", "T"));
   }
   progressTime() {
-    if (this.minuteInterval) {
-      clearInterval(this.minuteInterval);
-    }
-    this.minuteInterval = setInterval(() => {
-      this.time = addMinutes(this.time, 1);
-    }, ONE_MINUTE);
+    this.time = addMinutes(this.time, 1);
   }
   getCurrentWeather() {
     return this.data.currentConditions;
