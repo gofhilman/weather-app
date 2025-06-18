@@ -3,9 +3,6 @@ import updateContent from "./content-update";
 import updateMenu from "./menu-update";
 import updateBackground from "./background-update";
 
-const menuTitle = document.querySelector("#menu-title");
-const menuContent = document.querySelector("#menu-content");
-
 function handleSearch(event) {
   if (event.key === "Enter") {
     const newLocation = new Location(event.target.value);
@@ -31,13 +28,22 @@ function handleTempToggle(event) {
 }
 
 function handleMenuContent(event) {
-  if (event.target.parentElement.className === "place-container") {
+  if (
+    event.target.parentElement.className === "place-container" ||
+    event.target.className === "place-container"
+  ) {
     page.current = page.locations.find((locationObj) => {
-      return locationObj.id === event.target.parentElement.id;
+      return (
+        locationObj.id ===
+        (event.target.className === "place-container"
+          ? event.target.id
+          : event.target.parentElement.id)
+      );
     });
     page.current
       .fetchData()
       .then(() => updateContent())
+      .then(() => updateMenu())
       .then(() => updateBackground());
   }
 }
@@ -62,12 +68,14 @@ function handlePlaceRemoval(event) {
 }
 
 function handleMenuIcon() {
-  if (menuContent.style.display === "none") {
-    menuTitle.style.display = "block";
-    menuContent.style.display = "flex";
+  const menuTitle = document.querySelector("#menu-title");
+  const menuContent = document.querySelector("#menu-content");
+  if (menuContent.classList.contains("no-display")) {
+    menuTitle.classList.remove("no-display");
+    menuContent.classList.remove("no-display");
   } else {
-    menuTitle.style.display = "none";
-    menuContent.style.display = "none";
+    menuTitle.classList.add("no-display");
+    menuContent.classList.add("no-display");
   }
 }
 

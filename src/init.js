@@ -29,8 +29,8 @@ function init() {
       .then(() => updateBackground());
   }
 
-  menuTitle.style.display = "none";
-  menuContent.style.display = "none";
+  menuTitle.classList.add("no-display");
+  menuContent.classList.add("no-display");
 }
 
 export default init;
