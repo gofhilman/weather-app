@@ -81,6 +81,7 @@ body {
 }
 
 .sidebar {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -268,12 +269,12 @@ body {
 }
 
 .content {
-  width: 50%;
+  padding: 20px 50px 50px 50px;
   display: grid;
   grid-auto-flow: column;
-  grid-template: repeat(8, max-content) / auto auto;
+  grid-template: repeat(8, max-content) / 300px 260px;
   justify-content: center;
-  column-gap: 100px;
+  gap: 5px 100px;
   backdrop-filter: blur(10px);
   background-color: var(--background-light);
   border-radius: 15px;
@@ -283,19 +284,21 @@ body {
 }
 
 .head-address {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .subhead-address {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  font-weight: 450;
 }
 
 .place-time {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }
 
 .place-date {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 #location-time {
@@ -307,7 +310,7 @@ body {
   grid-row: 4 / 9;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 #weekly-weather > div {
@@ -317,6 +320,10 @@ body {
   align-items: center;
 }
 
+.day-name {
+  font-weight: 500;
+}
+
 .day-icon {
   max-height: 30px;
   max-width: 50px;
@@ -324,17 +331,23 @@ body {
 }
 
 #temperature {
-  font-size: 2rem;
+  font-size: 2.5rem;
   justify-self: center;
   align-self: end;
 }
 
 #weather-description {
+  font-size: 1.5rem;
   justify-self: center;
 }
 
 #feels-like {
+  font-size: 1.1rem;
   justify-self: center;
+}
+
+#uv-index, #sun-time, #humidity, #wind, #precipitation {
+  font-size: 1.1rem;
 }
 
 #uv-index {
