@@ -1,1 +1,1 @@
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[824],{824:(s,e,p)=>{s.exports=p.p+"519367db791426b4585c.svg"}}]);
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[824],{3824:(s,e,p)=>{s.exports=p.p+"519367db791426b4585c.svg"}}]);
