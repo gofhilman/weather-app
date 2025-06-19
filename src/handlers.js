@@ -6,11 +6,15 @@ import updateBackground from "./background-update";
 function handleSearch(event) {
   if (event.key === "Enter") {
     const newLocation = new Location(event.target.value);
-    newLocation
-      .fetchData()
-      .then(() => updateContent())
-      .then(() => updateMenu())
-      .then(() => updateBackground());
+    try {
+      newLocation
+        .fetchData()
+        .then(() => updateContent())
+        .then(() => updateMenu())
+        .then(() => updateBackground());
+    } catch (error) {
+      console.error(error.message);
+    }
     event.target.value = "";
   }
 }
@@ -20,11 +24,15 @@ function handleTempToggle(event) {
   let temperatureUnit = page.unit === "metric" ? "\u00B0F" : "\u00B0C";
   page.unit = newUnit;
   event.target.textContent = temperatureUnit;
-  page.current
-    .fetchData()
-    .then(() => updateContent())
-    .then(() => updateMenu())
-    .then(() => updateBackground());
+  try {
+    page.current
+      .fetchData()
+      .then(() => updateContent())
+      .then(() => updateMenu())
+      .then(() => updateBackground());
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 function handleMenuContent(event) {
@@ -40,11 +48,15 @@ function handleMenuContent(event) {
           : event.target.parentElement.id)
       );
     });
-    page.current
-      .fetchData()
-      .then(() => updateContent())
-      .then(() => updateMenu())
-      .then(() => updateBackground());
+    try {
+      page.current
+        .fetchData()
+        .then(() => updateContent())
+        .then(() => updateMenu())
+        .then(() => updateBackground());
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 }
 

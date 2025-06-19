@@ -22,11 +22,15 @@ function init() {
   }
 
   if (page.locations[0]) {
-    page.locations[0]
-      .fetchData()
-      .then(() => updateContent())
-      .then(() => updateMenu())
-      .then(() => updateBackground());
+    try {
+      page.locations[0]
+        .fetchData()
+        .then(() => updateContent())
+        .then(() => updateMenu())
+        .then(() => updateBackground());
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 
   menuTitle.classList.add("no-display");
